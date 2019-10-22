@@ -254,9 +254,7 @@ namespace Grand.Services.Common
                 //by default _pdfSettings contains settings for the current active store
                 //and we need PdfSettings for the store which was used to place an order
                 //so let's load it based on a store of the current order
-                var pdfSettingsByStore = _settingContext.LoadSetting<PdfSettings>(order.StoreId);
-
-
+                var pdfSettingsByStore = await _settingContext.LoadSetting<PdfSettings>(order.StoreId);
                 var lang = await _languageService.GetLanguageById(languageId == "" ? order.CustomerLanguageId : languageId);
                 if (lang == null || !lang.Published)
                     lang = _workContext.WorkingLanguage;

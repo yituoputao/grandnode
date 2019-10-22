@@ -72,7 +72,7 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Components
                 }
                 else
                 {
-                    globalScript += GetTrackingScript();
+                    globalScript += await GetTrackingScript();
                 }
             }
             catch (Exception ex)
@@ -90,9 +90,9 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Components
             return order;
         }
 
-        private string GetTrackingScript()
+        private async Task<string> GetTrackingScript()
         {
-            var GoogleAnalyticsEcommerceSettings = _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
+            var GoogleAnalyticsEcommerceSettings = await _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
             var analyticsTrackingScript = GoogleAnalyticsEcommerceSettings.TrackingScript + "\n";
             analyticsTrackingScript = analyticsTrackingScript.Replace("{GOOGLEID}", GoogleAnalyticsEcommerceSettings.GoogleId);
             analyticsTrackingScript = analyticsTrackingScript.Replace("{ECOMMERCE}", "");
@@ -101,7 +101,7 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Components
 
         private async Task<string> GetEcommerceScript(Order order)
         {
-            var GoogleAnalyticsEcommerceSettings = _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
+            var GoogleAnalyticsEcommerceSettings = await _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
             var usCulture = new CultureInfo("en-US");
             var analyticsTrackingScript = GoogleAnalyticsEcommerceSettings.TrackingScript + "\n";
             analyticsTrackingScript = analyticsTrackingScript.Replace("{GOOGLEID}", GoogleAnalyticsEcommerceSettings.GoogleId);

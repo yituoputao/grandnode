@@ -34,7 +34,7 @@ namespace Grand.Plugin.Payments.CheckMoneyOrder.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var checkMoneyOrderPaymentSettings = _settingService.LoadSetting<CheckMoneyOrderPaymentSettings>(_storeContext.CurrentStore.Id);
+            var checkMoneyOrderPaymentSettings = await _settingService.LoadSetting<CheckMoneyOrderPaymentSettings>(_storeContext.CurrentStore.Id);
 
             var model = new PaymentInfoModel
             {

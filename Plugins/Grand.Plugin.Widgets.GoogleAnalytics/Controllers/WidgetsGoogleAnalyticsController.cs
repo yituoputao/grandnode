@@ -65,7 +65,7 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var googleAnalyticsSettings = _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(storeScope);
+            var googleAnalyticsSettings = await _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(storeScope);
             var model = new ConfigurationModel();
             model.GoogleId = googleAnalyticsSettings.GoogleId;
             model.TrackingScript = googleAnalyticsSettings.TrackingScript;
@@ -92,7 +92,7 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var googleAnalyticsSettings = _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(storeScope);
+            var googleAnalyticsSettings = await _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(storeScope);
             googleAnalyticsSettings.GoogleId = model.GoogleId;
             googleAnalyticsSettings.TrackingScript = model.TrackingScript;
             googleAnalyticsSettings.EcommerceScript = model.EcommerceScript;
@@ -157,7 +157,7 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Controllers
                 }
                 else
                 {
-                    globalScript += GetTrackingScript();
+                    globalScript += await GetTrackingScript();
                 }
             }
             catch (Exception ex)
@@ -174,9 +174,9 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Controllers
             return order;
         }
         
-        private string GetTrackingScript()
+        private async Task<string> GetTrackingScript()
         {
-            var googleAnalyticsSettings = _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
+            var googleAnalyticsSettings = await _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
             var analyticsTrackingScript = googleAnalyticsSettings.TrackingScript + "\n";
             analyticsTrackingScript = analyticsTrackingScript.Replace("{GOOGLEID}", googleAnalyticsSettings.GoogleId);
             analyticsTrackingScript = analyticsTrackingScript.Replace("{ECOMMERCE}", "");
@@ -185,7 +185,7 @@ namespace Grand.Plugin.Widgets.GoogleAnalytics.Controllers
         
         private async Task<string> GetEcommerceScript(Order order)
         {
-            var googleAnalyticsSettings = _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
+            var googleAnalyticsSettings = await _settingService.LoadSetting<GoogleAnalyticsEcommerceSettings>(_storeContext.CurrentStore.Id);
             var usCulture = new CultureInfo("en-US");
             var analyticsTrackingScript = googleAnalyticsSettings.TrackingScript + "\n";
             analyticsTrackingScript = analyticsTrackingScript.Replace("{GOOGLEID}", googleAnalyticsSettings.GoogleId);

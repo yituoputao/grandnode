@@ -71,7 +71,7 @@ namespace Grand.Plugin.Payments.PayPalStandard.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var payPalStandardPaymentSettings = _settingService.LoadSetting<PayPalStandardPaymentSettings>(storeScope);
+            var payPalStandardPaymentSettings = await _settingService.LoadSetting<PayPalStandardPaymentSettings>(storeScope);
 
             var model = new ConfigurationModel();
             model.UseSandbox = payPalStandardPaymentSettings.UseSandbox;
@@ -107,7 +107,7 @@ namespace Grand.Plugin.Payments.PayPalStandard.Controllers
 
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var payPalStandardPaymentSettings = _settingService.LoadSetting<PayPalStandardPaymentSettings>(storeScope);
+            var payPalStandardPaymentSettings = await _settingService.LoadSetting<PayPalStandardPaymentSettings>(storeScope);
 
             //save settings
             payPalStandardPaymentSettings.UseSandbox = model.UseSandbox;
@@ -247,7 +247,7 @@ namespace Grand.Plugin.Payments.PayPalStandard.Controllers
 
                     //load settings for a chosen store scope
                     var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-                    var payPalStandardPaymentSettings = _settingService.LoadSetting<PayPalStandardPaymentSettings>(storeScope);
+                    var payPalStandardPaymentSettings = await _settingService.LoadSetting<PayPalStandardPaymentSettings>(storeScope);
 
                     //validate order total
                     if (payPalStandardPaymentSettings.PdtValidateOrderTotal && !Math.Round(mc_gross, 2).Equals(Math.Round(order.OrderTotal, 2)))

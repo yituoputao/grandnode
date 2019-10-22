@@ -3,7 +3,6 @@ using Grand.Core.Caching;
 using Grand.Core.Configuration;
 using Grand.Core.Data;
 using Grand.Core.Domain.Configuration;
-using Grand.Services.Events;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
@@ -339,9 +338,9 @@ namespace Grand.Services.Configuration
         /// </summary>
         /// <typeparam name="T">Type</typeparam>
         /// <param name="storeId">Store identifier for which settings should be loaded</param>
-        public virtual T LoadSetting<T>(string storeId = "") where T : ISettings, new()
+        public virtual async Task<T> LoadSetting<T>(string storeId = "") where T : ISettings, new()
         {
-            return (T)LoadSetting(typeof(T), storeId);
+            return (T)await LoadSetting(typeof(T), storeId);
         }
 
         /// <summary>
@@ -349,40 +348,43 @@ namespace Grand.Services.Configuration
         /// </summary>
         /// <param name="type">Type</param>
         /// <param name="storeId">Store identifier for which settings should be loaded</param>
-        public virtual ISettings LoadSetting(Type type, string storeId = "")
+        public virtual async Task<ISettings> LoadSetting(Type type, string storeId = "")
         {
-            var settings = Activator.CreateInstance(type);
-
-            foreach (var prop in type.GetProperties())
+            var key = $"{SETTINGS_PATTERN_KEY}_{type.Name}_{storeId}";
+            return await _cacheManager.GetAsync<ISettings>(key, async () =>
             {
-                // get properties we can read and write to
-                if (!prop.CanRead || !prop.CanWrite)
-                    continue;
+                var settings = Activator.CreateInstance(type);
 
-                var key = type.Name + "." + prop.Name;
-                //load by store
-                var setting = GetSettingByKey<string>(key, storeId: storeId, loadSharedValueIfNotFound: true);
-                if (setting == null || setting.Length == 0)
-                    continue;
-
-                var converter = TypeDescriptor.GetConverter(prop.PropertyType);
-
-                if (!converter.CanConvertFrom(typeof(string)))
-                    continue;
-                try
+                foreach (var prop in type.GetProperties())
                 {
-                    var value = converter.ConvertFromInvariantString(setting);
-                    //set property
-                    prop.SetValue(settings, value, null);
-                }
-                catch (Exception ex)
-                {
-                    var msg = $"Could not convert setting {key} to type {prop.PropertyType.FullName}";
-                    _serviceProvider.GetRequiredService<Logging.ILogger>().InsertLog(Core.Domain.Logging.LogLevel.Error, msg, ex.Message).GetAwaiter().GetResult();
-                }
-            }
+                    // get properties we can read and write to
+                    if (!prop.CanRead || !prop.CanWrite)
+                        continue;
 
-            return settings as ISettings;
+                    var key = type.Name + "." + prop.Name;
+                    //load by store
+                    var setting = GetSettingByKey<string>(key, storeId: storeId, loadSharedValueIfNotFound: true);
+                    if (setting == null || setting.Length == 0)
+                        continue;
+
+                    var converter = TypeDescriptor.GetConverter(prop.PropertyType);
+
+                    if (!converter.CanConvertFrom(typeof(string)))
+                        continue;
+                    try
+                    {
+                        var value = converter.ConvertFromInvariantString(setting);
+                        //set property
+                        prop.SetValue(settings, value, null);
+                    }
+                    catch (Exception ex)
+                    {
+                        var msg = $"Could not convert setting {key} to type {prop.PropertyType.FullName}";
+                        _serviceProvider.GetRequiredService<Logging.ILogger>().InsertLog(Core.Domain.Logging.LogLevel.Error, msg, ex.Message).GetAwaiter().GetResult();
+                    }
+                }
+                return await Task.FromResult(settings as ISettings);
+            });
         }
 
         /// <summary>

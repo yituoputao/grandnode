@@ -359,7 +359,7 @@ namespace Grand.Framework.Infrastructure.Extensions
                     else
                         storeId = storeContext.CurrentStore.Id;
 
-                    return settingService.LoadSetting(type, storeId);
+                    return settingService.LoadSetting(type, storeId).Result;
                 });
             }
         }

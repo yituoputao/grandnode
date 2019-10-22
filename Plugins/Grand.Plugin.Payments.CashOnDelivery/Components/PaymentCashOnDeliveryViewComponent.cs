@@ -25,7 +25,7 @@ namespace Grand.Plugin.Payments.CashOnDelivery.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var cashOnDeliveryPaymentSettings = _settingService.LoadSetting<CashOnDeliveryPaymentSettings>(_storeContext.CurrentStore.Id);
+            var cashOnDeliveryPaymentSettings = await _settingService.LoadSetting<CashOnDeliveryPaymentSettings>(_storeContext.CurrentStore.Id);
 
             var model = new PaymentInfoModel
             {

@@ -41,7 +41,7 @@ namespace Grand.Plugin.Payments.CheckMoneyOrder.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var checkMoneyOrderPaymentSettings = _settingService.LoadSetting<CheckMoneyOrderPaymentSettings>(storeScope);
+            var checkMoneyOrderPaymentSettings = await _settingService.LoadSetting<CheckMoneyOrderPaymentSettings>(storeScope);
 
             var model = new ConfigurationModel();
             model.DescriptionText = checkMoneyOrderPaymentSettings.DescriptionText;
@@ -74,7 +74,7 @@ namespace Grand.Plugin.Payments.CheckMoneyOrder.Controllers
 
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var checkMoneyOrderPaymentSettings = _settingService.LoadSetting<CheckMoneyOrderPaymentSettings>(storeScope);
+            var checkMoneyOrderPaymentSettings = await _settingService.LoadSetting<CheckMoneyOrderPaymentSettings>(storeScope);
 
             //save settings
             checkMoneyOrderPaymentSettings.DescriptionText = model.DescriptionText;

@@ -33,7 +33,7 @@ namespace Grand.Web.Areas.Admin.Components
                 {
                     if (!enabled)
                     {
-                        var catalogSettings = _settingService.LoadSetting<CatalogSettings>(store.Id);
+                        var catalogSettings = await _settingService.LoadSetting<CatalogSettings>(store.Id);
                         enabled = catalogSettings.IgnoreAcl;
                     }
                 }

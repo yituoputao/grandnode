@@ -39,7 +39,7 @@ namespace Grand.Plugin.Payments.CashOnDelivery.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var cashOnDeliveryPaymentSettings = _settingService.LoadSetting<CashOnDeliveryPaymentSettings>(storeScope);
+            var cashOnDeliveryPaymentSettings = await _settingService.LoadSetting<CashOnDeliveryPaymentSettings>(storeScope);
 
             var model = new ConfigurationModel();
             model.DescriptionText = cashOnDeliveryPaymentSettings.DescriptionText;
@@ -72,7 +72,7 @@ namespace Grand.Plugin.Payments.CashOnDelivery.Controllers
 
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var cashOnDeliveryPaymentSettings = _settingService.LoadSetting<CashOnDeliveryPaymentSettings>(storeScope);
+            var cashOnDeliveryPaymentSettings = await _settingService.LoadSetting<CashOnDeliveryPaymentSettings>(storeScope);
 
             //save settings
             cashOnDeliveryPaymentSettings.DescriptionText = model.DescriptionText;

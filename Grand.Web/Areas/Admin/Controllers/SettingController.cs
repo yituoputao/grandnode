@@ -178,7 +178,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var blogSettings = _settingService.LoadSetting<BlogSettings>(storeScope);
+            var blogSettings = await _settingService.LoadSetting<BlogSettings>(storeScope);
             var model = blogSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -201,7 +201,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var blogSettings = _settingService.LoadSetting<BlogSettings>(storeScope);
+            var blogSettings = await _settingService.LoadSetting<BlogSettings>(storeScope);
             blogSettings = model.ToEntity(blogSettings);
 
             /* We do not clear cache after each setting update.
@@ -266,7 +266,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var vendorSettings = _settingService.LoadSetting<VendorSettings>(storeScope);
+            var vendorSettings = await _settingService.LoadSetting<VendorSettings>(storeScope);
             var model = vendorSettings.ToModel();
             model.AddressSettings.CityEnabled = vendorSettings.CityEnabled;
             model.AddressSettings.CityRequired = vendorSettings.CityRequired;
@@ -313,7 +313,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var vendorSettings = _settingService.LoadSetting<VendorSettings>(storeScope);
+            var vendorSettings = await _settingService.LoadSetting<VendorSettings>(storeScope);
             vendorSettings = model.ToEntity(vendorSettings);
             vendorSettings.CityEnabled = model.AddressSettings.CityEnabled;
             vendorSettings.CityRequired = model.AddressSettings.CityRequired;
@@ -414,7 +414,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var forumSettings = _settingService.LoadSetting<ForumSettings>(storeScope);
+            var forumSettings = await _settingService.LoadSetting<ForumSettings>(storeScope);
             var model = forumSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -452,7 +452,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var forumSettings = _settingService.LoadSetting<ForumSettings>(storeScope);
+            var forumSettings = await _settingService.LoadSetting<ForumSettings>(storeScope);
             forumSettings = model.ToEntity(forumSettings);
 
             /* We do not clear cache after each setting update.
@@ -588,7 +588,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var newsSettings = _settingService.LoadSetting<NewsSettings>(storeScope);
+            var newsSettings = await _settingService.LoadSetting<NewsSettings>(storeScope);
             var model = newsSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -608,7 +608,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var newsSettings = _settingService.LoadSetting<NewsSettings>(storeScope);
+            var newsSettings = await _settingService.LoadSetting<NewsSettings>(storeScope);
             newsSettings = model.ToEntity(newsSettings);
 
             /* We do not clear cache after each setting update.
@@ -662,7 +662,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var shippingSettings = _settingService.LoadSetting<ShippingSettings>(storeScope);
+            var shippingSettings = await _settingService.LoadSetting<ShippingSettings>(storeScope);
             var model = shippingSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -715,7 +715,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var shippingSettings = _settingService.LoadSetting<ShippingSettings>(storeScope);
+            var shippingSettings = await _settingService.LoadSetting<ShippingSettings>(storeScope);
             shippingSettings = model.ToEntity(shippingSettings);
 
             /* We do not clear cache after each setting update.
@@ -813,7 +813,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var taxSettings = _settingService.LoadSetting<TaxSettings>(storeScope);
+            var taxSettings = await _settingService.LoadSetting<TaxSettings>(storeScope);
             var model = taxSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -893,7 +893,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var taxSettings = _settingService.LoadSetting<TaxSettings>(storeScope);
+            var taxSettings = await _settingService.LoadSetting<TaxSettings>(storeScope);
             taxSettings = model.ToEntity(taxSettings);
 
             /* We do not clear cache after each setting update.
@@ -1047,7 +1047,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var catalogSettings = _settingService.LoadSetting<CatalogSettings>(storeScope);
+            var catalogSettings = await _settingService.LoadSetting<CatalogSettings>(storeScope);
             var model = catalogSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -1127,7 +1127,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var catalogSettings = _settingService.LoadSetting<CatalogSettings>(storeScope);
+            var catalogSettings = await _settingService.LoadSetting<CatalogSettings>(storeScope);
             catalogSettings = model.ToEntity(catalogSettings);
 
             /* We do not clear cache after each setting update.
@@ -1490,7 +1490,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> SortOptionsList(DataSourceRequest command)
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var catalogSettings = _settingService.LoadSetting<CatalogSettings>(storeScope);
+            var catalogSettings = await _settingService.LoadSetting<CatalogSettings>(storeScope);
             var model = new List<SortOptionModel>();
             foreach (int option in Enum.GetValues(typeof(ProductSortingEnum)))
             {
@@ -1514,7 +1514,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> SortOptionUpdate(SortOptionModel model)
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var catalogSettings = _settingService.LoadSetting<CatalogSettings>(storeScope);
+            var catalogSettings = await _settingService.LoadSetting<CatalogSettings>(storeScope);
 
             catalogSettings.ProductSortingEnumDisplayOrder[model.Id] = model.DisplayOrder;
             if (model.IsActive && catalogSettings.ProductSortingEnumDisabled.Contains(model.Id))
@@ -1536,7 +1536,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var rewardPointsSettings = _settingService.LoadSetting<RewardPointsSettings>(storeScope);
+            var rewardPointsSettings = await _settingService.LoadSetting<RewardPointsSettings>(storeScope);
             var model = rewardPointsSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -1552,7 +1552,7 @@ namespace Grand.Web.Areas.Admin.Controllers
                 model.DisplayHowMuchWillBeEarned_OverrideForStore = _settingService.SettingExists(rewardPointsSettings, x => x.DisplayHowMuchWillBeEarned, storeScope);
                 model.PointsForRegistration_OverrideForStore = _settingService.SettingExists(rewardPointsSettings, x => x.PointsForRegistration, storeScope);
             }
-            var currencySettings = _settingService.LoadSetting<CurrencySettings>(storeScope);
+            var currencySettings = await _settingService.LoadSetting<CurrencySettings>(storeScope);
             model.PrimaryStoreCurrencyCode = (await _currencyService.GetCurrencyById(currencySettings.PrimaryStoreCurrencyId)).CurrencyCode;
 
             return View(model);
@@ -1564,7 +1564,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             {
                 //load settings for a chosen store scope
                 var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-                var rewardPointsSettings = _settingService.LoadSetting<RewardPointsSettings>(storeScope);
+                var rewardPointsSettings = await _settingService.LoadSetting<RewardPointsSettings>(storeScope);
                 rewardPointsSettings = model.ToEntity(rewardPointsSettings);
 
                 /* We do not clear cache after each setting update.
@@ -1639,7 +1639,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var orderSettings = _settingService.LoadSetting<OrderSettings>(storeScope);
+            var orderSettings = await _settingService.LoadSetting<OrderSettings>(storeScope);
             var model = orderSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -1664,7 +1664,7 @@ namespace Grand.Web.Areas.Admin.Controllers
                 model.NumberOfDaysReturnRequestAvailable_OverrideForStore = _settingService.SettingExists(orderSettings, x => x.NumberOfDaysReturnRequestAvailable, storeScope);
             }
 
-            var currencySettings = _settingService.LoadSetting<CurrencySettings>(storeScope);
+            var currencySettings = await _settingService.LoadSetting<CurrencySettings>(storeScope);
             model.PrimaryStoreCurrencyCode = (await _currencyService.GetCurrencyById(currencySettings.PrimaryStoreCurrencyId)).CurrencyCode;
 
             //gift card activation/deactivation
@@ -1689,7 +1689,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             {
                 //load settings for a chosen store scope
                 var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-                var orderSettings = _settingService.LoadSetting<OrderSettings>(storeScope);
+                var orderSettings = await _settingService.LoadSetting<OrderSettings>(storeScope);
                 orderSettings = model.ToEntity(orderSettings);
 
                 /* We do not clear cache after each setting update.
@@ -1839,7 +1839,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var shoppingCartSettings = _settingService.LoadSetting<ShoppingCartSettings>(storeScope);
+            var shoppingCartSettings = await _settingService.LoadSetting<ShoppingCartSettings>(storeScope);
             var model = shoppingCartSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -1870,7 +1870,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var shoppingCartSettings = _settingService.LoadSetting<ShoppingCartSettings>(storeScope);
+            var shoppingCartSettings = await _settingService.LoadSetting<ShoppingCartSettings>(storeScope);
             shoppingCartSettings = model.ToEntity(shoppingCartSettings);
 
             /* We do not clear cache after each setting update.
@@ -2176,7 +2176,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var mediaSettings = _settingService.LoadSetting<MediaSettings>(storeScope);
+            var mediaSettings = await _settingService.LoadSetting<MediaSettings>(storeScope);
             var model = mediaSettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (!String.IsNullOrEmpty(storeScope))
@@ -2205,7 +2205,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //load settings for a chosen store scope
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var mediaSettings = _settingService.LoadSetting<MediaSettings>(storeScope);
+            var mediaSettings = await _settingService.LoadSetting<MediaSettings>(storeScope);
             mediaSettings = model.ToEntity(mediaSettings);
 
             /* We do not clear cache after each setting update.
@@ -2304,10 +2304,10 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> CustomerUser()
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var customerSettings = _settingService.LoadSetting<CustomerSettings>(storeScope);
-            var addressSettings = _settingService.LoadSetting<AddressSettings>(storeScope);
-            var dateTimeSettings = _settingService.LoadSetting<DateTimeSettings>(storeScope);
-            var externalAuthenticationSettings = _settingService.LoadSetting<ExternalAuthenticationSettings>(storeScope);
+            var customerSettings = await _settingService.LoadSetting<CustomerSettings>(storeScope);
+            var addressSettings = await _settingService.LoadSetting<AddressSettings>(storeScope);
+            var dateTimeSettings = await _settingService.LoadSetting<DateTimeSettings>(storeScope);
+            var externalAuthenticationSettings = await _settingService.LoadSetting<ExternalAuthenticationSettings>(storeScope);
 
             //merge settings
             var model = new CustomerUserSettingsModel
@@ -2336,10 +2336,10 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> CustomerUser(CustomerUserSettingsModel model)
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var customerSettings = _settingService.LoadSetting<CustomerSettings>(storeScope);
-            var addressSettings = _settingService.LoadSetting<AddressSettings>(storeScope);
-            var dateTimeSettings = _settingService.LoadSetting<DateTimeSettings>(storeScope);
-            var externalAuthenticationSettings = _settingService.LoadSetting<ExternalAuthenticationSettings>(storeScope);
+            var customerSettings = await _settingService.LoadSetting<CustomerSettings>(storeScope);
+            var addressSettings = await _settingService.LoadSetting<AddressSettings>(storeScope);
+            var dateTimeSettings = await _settingService.LoadSetting<DateTimeSettings>(storeScope);
+            var externalAuthenticationSettings = await _settingService.LoadSetting<ExternalAuthenticationSettings>(storeScope);
 
             customerSettings = model.CustomerSettings.ToEntity(customerSettings);
             await _settingService.SaveSetting(customerSettings);
@@ -2370,10 +2370,10 @@ namespace Grand.Web.Areas.Admin.Controllers
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
             model.ActiveStoreScopeConfiguration = storeScope;
             //store information
-            var storeInformationSettings = _settingService.LoadSetting<StoreInformationSettings>(storeScope);
-            var commonSettings = _settingService.LoadSetting<CommonSettings>(storeScope);
-            var googleAnalyticsSettings = _settingService.LoadSetting<GoogleAnalyticsSettings>(storeScope);
-            var adminareasettings = _settingService.LoadSetting<AdminAreaSettings>(storeScope);
+            var storeInformationSettings = await _settingService.LoadSetting<StoreInformationSettings>(storeScope);
+            var commonSettings = await _settingService.LoadSetting<CommonSettings>(storeScope);
+            var googleAnalyticsSettings = await _settingService.LoadSetting<GoogleAnalyticsSettings>(storeScope);
+            var adminareasettings = await _settingService.LoadSetting<AdminAreaSettings>(storeScope);
 
             model.StoreInformationSettings.StoreClosed = storeInformationSettings.StoreClosed;
             
@@ -2428,7 +2428,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             }
 
             //seo settings
-            var seoSettings = _settingService.LoadSetting<SeoSettings>(storeScope);
+            var seoSettings = await _settingService.LoadSetting<SeoSettings>(storeScope);
             model.SeoSettings.PageTitleSeparator = seoSettings.PageTitleSeparator;
             model.SeoSettings.PageTitleSeoAdjustment = (int)seoSettings.PageTitleSeoAdjustment;
             model.SeoSettings.PageTitleSeoAdjustmentValues = seoSettings.PageTitleSeoAdjustment.ToSelectList();
@@ -2463,8 +2463,8 @@ namespace Grand.Web.Areas.Admin.Controllers
             }
 
             //security settings
-            var securitySettings = _settingService.LoadSetting<SecuritySettings>(storeScope);
-            var captchaSettings = _settingService.LoadSetting<CaptchaSettings>(storeScope);
+            var securitySettings = await _settingService.LoadSetting<SecuritySettings>(storeScope);
+            var captchaSettings = await _settingService.LoadSetting<CaptchaSettings>(storeScope);
             model.SecuritySettings.EncryptionKey = securitySettings.EncryptionKey;
             if (securitySettings.AdminAreaAllowedIpAddresses != null)
                 for (int i = 0; i < securitySettings.AdminAreaAllowedIpAddresses.Count; i++)
@@ -2494,7 +2494,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             model.SecuritySettings.ReCaptchaPrivateKey = captchaSettings.ReCaptchaPrivateKey;
 
             //PDF settings
-            var pdfSettings = _settingService.LoadSetting<PdfSettings>(storeScope);
+            var pdfSettings = await _settingService.LoadSetting<PdfSettings>(storeScope);
             model.PdfSettings.LetterPageSizeEnabled = pdfSettings.LetterPageSizeEnabled;
             model.PdfSettings.LogoPictureId = pdfSettings.LogoPictureId;
             model.PdfSettings.DisablePdfInvoicesForPendingOrders = pdfSettings.DisablePdfInvoicesForPendingOrders;
@@ -2511,7 +2511,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             }
 
             //localization
-            var localizationSettings = _settingService.LoadSetting<LocalizationSettings>(storeScope);
+            var localizationSettings = await _settingService.LoadSetting<LocalizationSettings>(storeScope);
             model.LocalizationSettings.UseImagesForLanguageSelection = localizationSettings.UseImagesForLanguageSelection;
             model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled = localizationSettings.SeoFriendlyUrlsForLanguagesEnabled;
             model.LocalizationSettings.AutomaticallyDetectLanguage = localizationSettings.AutomaticallyDetectLanguage;
@@ -2538,7 +2538,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             }
 
             //display menu settings
-            var displayMenuItemSettings = _settingService.LoadSetting<MenuItemSettings>(storeScope);
+            var displayMenuItemSettings = await _settingService.LoadSetting<MenuItemSettings>(storeScope);
             model.DisplayMenuSettings.DisplayHomePageMenu = displayMenuItemSettings.DisplayHomePageMenu;
             model.DisplayMenuSettings.DisplayNewProductsMenu = displayMenuItemSettings.DisplayNewProductsMenu;
             model.DisplayMenuSettings.DisplaySearchMenu = displayMenuItemSettings.DisplaySearchMenu;
@@ -2559,7 +2559,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             }
 
             //knowledgebase
-            var knowledgebaseSettings = _settingService.LoadSetting<KnowledgebaseSettings>(storeScope);
+            var knowledgebaseSettings = await _settingService.LoadSetting<KnowledgebaseSettings>(storeScope);
             model.KnowledgebaseSettings.Enabled = knowledgebaseSettings.Enabled;
             model.KnowledgebaseSettings.AllowNotRegisteredUsersToLeaveComments = knowledgebaseSettings.AllowNotRegisteredUsersToLeaveComments;
             model.KnowledgebaseSettings.NotifyAboutNewArticleComments = knowledgebaseSettings.NotifyAboutNewArticleComments;
@@ -2574,8 +2574,8 @@ namespace Grand.Web.Areas.Admin.Controllers
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
 
             //store information settings
-            var storeInformationSettings = _settingService.LoadSetting<StoreInformationSettings>(storeScope);
-            var commonSettings = _settingService.LoadSetting<CommonSettings>(storeScope);
+            var storeInformationSettings = await _settingService.LoadSetting<StoreInformationSettings>(storeScope);
+            var commonSettings = await _settingService.LoadSetting<CommonSettings>(storeScope);
 
             storeInformationSettings.StoreClosed = model.StoreInformationSettings.StoreClosed;
             storeInformationSettings.DefaultStoreTheme = model.StoreInformationSettings.DefaultStoreTheme;
@@ -2672,7 +2672,7 @@ namespace Grand.Web.Areas.Admin.Controllers
 
 
             //seo settings
-            var seoSettings = _settingService.LoadSetting<SeoSettings>(storeScope);
+            var seoSettings = await _settingService.LoadSetting<SeoSettings>(storeScope);
             seoSettings.PageTitleSeparator = model.SeoSettings.PageTitleSeparator;
             seoSettings.PageTitleSeoAdjustment = (PageTitleSeoAdjustment)model.SeoSettings.PageTitleSeoAdjustment;
             seoSettings.DefaultTitle = model.SeoSettings.DefaultTitle;
@@ -2756,8 +2756,8 @@ namespace Grand.Web.Areas.Admin.Controllers
                 await _settingService.DeleteSetting(seoSettings, x => x.OpenGraphMetaTags, storeScope);
 
             //security settings
-            var securitySettings = _settingService.LoadSetting<SecuritySettings>(storeScope);
-            var captchaSettings = _settingService.LoadSetting<CaptchaSettings>(storeScope);
+            var securitySettings = await _settingService.LoadSetting<SecuritySettings>(storeScope);
+            var captchaSettings = await _settingService.LoadSetting<CaptchaSettings>(storeScope);
             if (securitySettings.AdminAreaAllowedIpAddresses == null)
                 securitySettings.AdminAreaAllowedIpAddresses = new List<string>();
             securitySettings.AdminAreaAllowedIpAddresses.Clear();
@@ -2793,7 +2793,7 @@ namespace Grand.Web.Areas.Admin.Controllers
             }
 
             //PDF settings
-            var pdfSettings = _settingService.LoadSetting<PdfSettings>(storeScope);
+            var pdfSettings = await _settingService.LoadSetting<PdfSettings>(storeScope);
             pdfSettings.LetterPageSizeEnabled = model.PdfSettings.LetterPageSizeEnabled;
             pdfSettings.LogoPictureId = model.PdfSettings.LogoPictureId;
             pdfSettings.DisablePdfInvoicesForPendingOrders = model.PdfSettings.DisablePdfInvoicesForPendingOrders;
@@ -2829,7 +2829,7 @@ namespace Grand.Web.Areas.Admin.Controllers
                 await _settingService.DeleteSetting(pdfSettings, x => x.InvoiceFooterTextColumn2, storeScope);
 
             //localization settings
-            var localizationSettings = _settingService.LoadSetting<LocalizationSettings>(storeScope);
+            var localizationSettings = await _settingService.LoadSetting<LocalizationSettings>(storeScope);
             localizationSettings.UseImagesForLanguageSelection = model.LocalizationSettings.UseImagesForLanguageSelection;
             if (localizationSettings.SeoFriendlyUrlsForLanguagesEnabled != model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
             {
@@ -2848,12 +2848,12 @@ namespace Grand.Web.Areas.Admin.Controllers
             await _settingService.SaveSetting(commonSettings);
 
             //admin settings
-            var adminareasettings = _settingService.LoadSetting<AdminAreaSettings>(storeScope);
+            var adminareasettings = await _settingService.LoadSetting<AdminAreaSettings>(storeScope);
 
             await _settingService.SaveSetting(adminareasettings);
 
             //googleanalytics settings
-            var googleAnalyticsSettings = _settingService.LoadSetting<GoogleAnalyticsSettings>(storeScope);
+            var googleAnalyticsSettings = await _settingService.LoadSetting<GoogleAnalyticsSettings>(storeScope);
             googleAnalyticsSettings.gaprivateKey = model.GoogleAnalyticsSettings.gaprivateKey;
             googleAnalyticsSettings.gaserviceAccountEmail = model.GoogleAnalyticsSettings.gaserviceAccountEmail;
             googleAnalyticsSettings.gaviewID = model.GoogleAnalyticsSettings.gaviewID;
@@ -2875,7 +2875,7 @@ namespace Grand.Web.Areas.Admin.Controllers
 
 
             //Menu item settings
-            var displayMenuItemSettings = _settingService.LoadSetting<MenuItemSettings>(storeScope);
+            var displayMenuItemSettings = await _settingService.LoadSetting<MenuItemSettings>(storeScope);
             displayMenuItemSettings.DisplayHomePageMenu = model.DisplayMenuSettings.DisplayHomePageMenu;
             displayMenuItemSettings.DisplayNewProductsMenu = model.DisplayMenuSettings.DisplayNewProductsMenu;
             displayMenuItemSettings.DisplaySearchMenu = model.DisplayMenuSettings.DisplaySearchMenu;
@@ -2920,7 +2920,7 @@ namespace Grand.Web.Areas.Admin.Controllers
                 await _settingService.DeleteSetting(displayMenuItemSettings, x => x.DisplayContactUsMenu, storeScope);
 
             //Knowledgebase
-            var knowledgebaseSettings = _settingService.LoadSetting<KnowledgebaseSettings>(storeScope);
+            var knowledgebaseSettings = await _settingService.LoadSetting<KnowledgebaseSettings>(storeScope);
             knowledgebaseSettings.Enabled = model.KnowledgebaseSettings.Enabled;
             knowledgebaseSettings.AllowNotRegisteredUsersToLeaveComments = model.KnowledgebaseSettings.AllowNotRegisteredUsersToLeaveComments;
             knowledgebaseSettings.NotifyAboutNewArticleComments = model.KnowledgebaseSettings.NotifyAboutNewArticleComments;
@@ -2958,7 +2958,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> ChangeEncryptionKey(GeneralCommonSettingsModel model)
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var securitySettings = _settingService.LoadSetting<SecuritySettings>(storeScope);
+            var securitySettings = await _settingService.LoadSetting<SecuritySettings>(storeScope);
 
             try
             {
@@ -3037,7 +3037,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         {
             //https://docs.mongodb.com/manual/reference/text-search-languages/#text-search-languages
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var commonSettings = _settingService.LoadSetting<CommonSettings>(storeScope);
+            var commonSettings = await _settingService.LoadSetting<CommonSettings>(storeScope);
             try
             {
                 if (commonSettings.UseFullTextSearch)
@@ -3117,7 +3117,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> PushNotifications()
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var settings = _settingService.LoadSetting<PushNotificationsSettings>(storeScope);
+            var settings = await _settingService.LoadSetting<PushNotificationsSettings>(storeScope);
 
             var model = new ConfigurationModel
             {
@@ -3140,7 +3140,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> PushNotifications(DataSourceRequest command, ConfigurationModel model)
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var settings = _settingService.LoadSetting<PushNotificationsSettings>(storeScope);
+            var settings = await _settingService.LoadSetting<PushNotificationsSettings>(storeScope);
             settings.AllowGuestNotifications = model.AllowGuestNotifications;
             settings.AuthDomain = model.AuthDomain;
             settings.DatabaseUrl = model.DatabaseUrl;
@@ -3204,7 +3204,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> AdminSearch()
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var settings = _settingService.LoadSetting<AdminSearchSettings>(storeScope);
+            var settings = await _settingService.LoadSetting<AdminSearchSettings>(storeScope);
 
             var model = new AdminSearchSettingsModel
             {
@@ -3238,7 +3238,7 @@ namespace Grand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> AdminSearch(DataSourceRequest command, AdminSearchSettingsModel model)
         {
             var storeScope = await this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var settings = _settingService.LoadSetting<AdminSearchSettings>(storeScope);
+            var settings = await _settingService.LoadSetting<AdminSearchSettings>(storeScope);
             settings.SearchInBlogs = model.SearchInBlogs;
             settings.SearchInCategories = model.SearchInCategories;
             settings.SearchInCustomers = model.SearchInCustomers;
